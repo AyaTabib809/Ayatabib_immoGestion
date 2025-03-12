@@ -4,18 +4,25 @@ class Avis {
   String commentaire;
   int note;
 
-  Avis({required this.id, required this.idClient, required this.commentaire, required this.note});
+  Avis({
+    required this.id,
+    required this.idClient,
+    required this.commentaire,
+    required this.note,
+  });
 
-  factory Avis.fromJson(Map<String, dynamic> json) {
+  // Méthode fromMap
+  factory Avis.fromMap(Map<String, dynamic> map) {
     return Avis(
-      id: json['id'],
-      idClient: json['idClient'],
-      commentaire: json['commentaire'],
-      note: json['note'],
+      id: map['id']?.toString() ?? '',
+      idClient: map['idClient']?.toString() ?? '',
+      commentaire: map['commentaire']?.toString() ?? '',
+      note: (map['note'] is int) ? map['note'] : int.tryParse(map['note'].toString()) ?? 0,
     );
   }
 
-  Map<String, dynamic> toJson() {
+  // Méthode toMap
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'idClient': idClient,

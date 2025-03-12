@@ -5,6 +5,7 @@ class Utilisateur {
   String email;
   String motDepass;
   String role; // "client", "technicien", "administrateur"
+  String statut; // "valider" "rejeter", "en attente"
 
   Utilisateur({
     required this.id,
@@ -13,17 +14,19 @@ class Utilisateur {
     required this.email,
     required this.motDepass,
     required this.role,
+    required this.statut,
   });
 
   // Méthode fromMap
   factory Utilisateur.fromMap(Map<String, dynamic> map) {
     return Utilisateur(
-      id: map['id'] ?? '',
-      nom: map['nom'] ?? '',
-      prenom: map['prenom'] ?? '',
-      email: map['email'] ?? '',
-      motDepass: map['motDepass'] ?? '',
-      role: map['role'] ?? '',
+      id: map['id']?.toString() ?? '',
+      nom: map['nom']?.toString() ?? '',
+      prenom: map['prenom']?.toString() ?? '',
+      email: map['email']?.toString() ?? '',
+      motDepass: map['motDepass']?.toString() ?? '',
+      role: map['role']?.toString() ?? '',
+      statut: map['statut']?.toString() ?? '',
     );
   }
 
@@ -35,6 +38,7 @@ class Utilisateur {
       'prenom': prenom,
       'email': email,
       'role': role,
+      'statut': statut,
     };
 
     // Inclure le mot de passe uniquement si demandé
